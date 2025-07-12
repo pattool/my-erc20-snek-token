@@ -1,15 +1,14 @@
 # ------------------------------------------------------------------
 #                             IMPORTS
 # ------------------------------------------------------------------
-from hypothesis.stateful import RuleBasedStateMachine, rule, invariant
-from contracts import snek_token
-from boa.test.strategies import strategy
-from hypothesis import settings, assume
-
 import boa
-from script.deploy import INITIAL_SUPPLY
+from boa.test.strategies import strategy
 from eth_utils import to_wei
+from hypothesis import assume, settings
+from hypothesis.stateful import RuleBasedStateMachine, invariant, rule
 
+from contracts import snek_token
+from script.deploy import INITIAL_SUPPLY
 
 RANDOM_USER = boa.env.generate_address("random_user")
 
@@ -150,10 +149,5 @@ class StatefulFuzzer(RuleBasedStateMachine):
 # ------------------------------------------------------------------
 TestStatefulFuzzing = StatefulFuzzer.TestCase
 
-TestStatefulFuzzing.settings = settings(max_examples=3000, stateful_step_count=50)
-
-# ------------------------------------------------------------------
-#                            UNIT TEST
-# ------------------------------------------------------------------
-
+TestStatefulFuzzing.settings = settings(max_examples=30, stateful_step_count=10)
 

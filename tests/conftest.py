@@ -1,4 +1,5 @@
 import pytest
+
 from script.deploy import deploy
 
 

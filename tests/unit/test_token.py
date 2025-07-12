@@ -1,6 +1,7 @@
 import boa
-from script.deploy import INITIAL_SUPPLY
 from eth_utils import to_wei
+
+from script.deploy import INITIAL_SUPPLY
 
 RANDOM_USER = boa.env.generate_address("random_user")
 
@@ -13,8 +14,8 @@ def test_token_supply(snek_token):
 def test_token_emits_event(snek_token):
     #snek_token = deploy() # -> see conftest
     with boa.env.prank(snek_token.owner()):
-        snek_token.transfer(RANDOM_USER, INITIAL_SUPPLY) # (to Random_User, amount)
-        logs = snek_token.get_logs()
+        snek_token.transfer(RANDOM_USER, INITIAL_SUPPLY) # .transfer function on the erc20 / (to Random_User, amount)
+        logs = snek_token.get_logs() # get_logs come from boa lib
         #log_owner = logs[0].sender    #-> for 0.4.1 version vyper 
         log_owner = logs[0].topics[0]  #-> for 0.4.0 version vyper 
         assert log_owner == snek_token.owner() 

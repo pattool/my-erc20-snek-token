@@ -1,0 +1,33 @@
+
+
+[networks.anvil]
+url = "http://127.0.0.1:8545"
+save_to_db = false
+prompt_live = false
+default_account_name = "anvil1"
+
+
+[networks.sepolia]
+url = "$SEPOLIA_RPC_URL" # from Alchemy
+save_to_db = false
+default_account_name = "default1"
+explorer_uri = 'https://eth-sepolia.blockscout.com/' 
+explorer_type = 'blockscout'
+chain_id = 11155111
+
+
+[networks.sepolia-zksync]
+url = "$ZKSYNC_SEPOLIA_RPC_URL" # from Alchemy
+chain_id = 300
+save_to_db = false
+default_account_name = "default2"
+explorer_uri = "https://explorer.sepolia.era.zksync.dev"
+explorer_type = "zksyncexplorer"
+is_zksync = true
+
+
+[networks.our_fake_chain_free] # pw like anvil
+url = "$TENDERLY_RPC_URL"
+save_to_db = false
+prompt_live = false
+default_account_name = "tenderly1"
