@@ -9,7 +9,7 @@ INITIAL_SUPPLY = to_wei(1000, "ether") # gives 18 decimals to 1000
 
 def deploy() -> VyperContract:
     snek_contract = snek_token.deploy(INITIAL_SUPPLY)
-    print(f"Deployed to {snek_contract.address}")
+    print(f"Deployed Snektoken at {snek_contract.address}")
 
    #active_network = get_active_network()
    #if active_network.has_explorer() and active_network.is_local_or_forked_network() is False:

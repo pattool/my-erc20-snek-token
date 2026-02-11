@@ -23,7 +23,7 @@ implements: IERC20  # Does not compile before it Ads all the function of an inte
 # ------------------------------------------------------------------
 #                             IMPORTS
 # ------------------------------------------------------------------
-from snekmate.auth import ownable as ow         # example how to import this ownable vyper contract
+from snekmate.auth import ownable as ow  # example how to import this ownable vyper contract
 from snekmate.tokens import erc20
 
 ### OR
