@@ -26,11 +26,6 @@ implements: IERC20  # Does not compile before it Ads all the function of an inte
 from snekmate.auth import ownable as ow  # example how to import this ownable vyper contract
 from snekmate.tokens import erc20
 
-### OR
-
-#from lib.pypi.snekmate.auth import ownable as ow # example how to import this ownable vyper contract
-#from lib.pypi.snekmate.tokens import erc20
-
 
 # ------------------------------------------------------------------
 #                      IMPORT STORAGE VARIABLES
@@ -53,7 +48,6 @@ NAME: constant(String[25]) = "snek_token"
 SYMBOL: constant(String[5]) = "SNEK"
 DECIMALS: constant(uint8) = 18
 EIP712_VERSION: constant(String[20]) = "1"
-
 MAX_SUPPLY: constant(uint256) = 2**255
 
 
@@ -62,6 +56,10 @@ MAX_SUPPLY: constant(uint256) = 2**255
 # ------------------------------------------------------------------
 @deploy
 def __init__(initial_supply: uint256):
+    """
+    @notice Initialize the token with an initial supply minted to the deployer.
+    @param initial_supply The amount of tokens to mint on deployment.
+    """
     ow.__init__()
     erc20.__init__(NAME, SYMBOL, DECIMALS, NAME, EIP712_VERSION)
     erc20._mint(msg.sender, initial_supply)
@@ -80,6 +78,12 @@ def __init__(initial_supply: uint256):
 
 @external
 def super_mint():
+    """
+    @notice Mint 100 tokens to the caller.
+    @dev Includes overflow protection and max supply cap check.
+         Updates both the caller's balance and total supply.
+         Emits a Transfer event from the zero address.
+    """
     amount: uint256 = as_wei_value(100, "ether")
 
     # Overflow protection
@@ -87,7 +91,6 @@ def super_mint():
     # maximum cap against overflow attack   
     assert erc20.totalSupply + amount <= MAX_SUPPLY, "Max supply exceeded"
     
-
     erc20.balanceOf[msg.sender] +=  amount
     erc20.totalSupply += amount
     log IERC20.Transfer(empty(address), msg.sender, amount)

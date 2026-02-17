@@ -12,6 +12,7 @@ def test_token_supply(snek_token):
 
 
 def test_token_emits_event(snek_token):
+    """Verify transfer emits Transfer event with correct owner."""
     #snek_token = deploy() # -> see conftest
     with boa.env.prank(snek_token.owner()):
         snek_token.transfer(RANDOM_USER, INITIAL_SUPPLY) # .transfer function on the erc20 / (to Random_User, amount)

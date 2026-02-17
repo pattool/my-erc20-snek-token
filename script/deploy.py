@@ -1,28 +1,29 @@
-from moccasin.config import get_active_network
 import time
-from contracts import snek_token
+
 from eth_utils import to_wei
 from moccasin.boa_tools import VyperContract
+from moccasin.config import get_active_network
 
+from contracts import snek_token
 
-INITIAL_SUPPLY = to_wei(1000, "ether") # gives 18 decimals to 1000
+INITIAL_SUPPLY = to_wei(1000, "ether") # or int(1000e18) gives 18 decimals to 1000
 
 def deploy() -> VyperContract:
     snek_contract = snek_token.deploy(INITIAL_SUPPLY)
-    print(f"Deployed Snektoken at {snek_contract.address}")
+    print(f"\nDeployed Snektoken at {snek_contract.address}")
 
    #active_network = get_active_network()
    #if active_network.has_explorer() and active_network.is_local_or_forked_network() is False:
    #    result = active_network.moccasin_verify(snek_contract)
    #    result.wait_for_verification()
 
-    print()
+    
     active_network = get_active_network()
-    print(f"Active network: {active_network.name}")
+    print(f"\nActive network: {active_network.name}")
     print(f"Explorer URI: {active_network.explorer_uri}")
     print(f"Explorer type: {active_network.explorer_type}")
-    print(f"Network has explorer: {active_network.has_explorer()}")
-    print()
+    print(f"Network has explorer: {active_network.has_explorer()}\n")
+    
 
     if active_network.has_explorer() and active_network.is_local_or_forked_network() is False:
         print(f"Waiting 20 seconds for contract to be indexed by {active_network.explorer_type} ...")

@@ -19,8 +19,8 @@ class StatefulFuzzer(RuleBasedStateMachine):
     def __init__(self):
         super().__init__()
         self.token = snek_token.deploy(INITIAL_SUPPLY)
-        print()
-        print("Deployed initial supply:", INITIAL_SUPPLY)
+        
+        print("\nDeployed initial supply:", INITIAL_SUPPLY)
         print()
 
     ## There is a issue on def change_supply ->overflow!!!!

@@ -26,7 +26,7 @@ explorer_type = "zksyncexplorer"
 is_zksync = true
 
 
-[networks.our_fake_chain_free] # pw like anvil
+[networks.sepolia-tenderly] # pw like anvil
 url = "$TENDERLY_RPC_URL"
 save_to_db = false
 prompt_live = false
