@@ -59,7 +59,6 @@ class StatefulFuzzer(RuleBasedStateMachine):
         
         initial_balance = self.token.balanceOf(RANDOM_USER)
         print(f"    Deployed initial balance: {initial_balance} with user {RANDOM_USER}")
-
         
         with boa.env.prank(RANDOM_USER):
             self.token.super_mint()
@@ -132,15 +131,14 @@ class StatefulFuzzer(RuleBasedStateMachine):
         
         # Verify individual balances don't exceed total supply
         assert random_user_balance <= total_supply, \
-        f"    Random user balance {random_user_balance} exceed total supply {total_supply}"
+        f"    Random user balance {random_user_balance} exceeds total supply {total_supply}"
 
         assert balance_owner <= total_supply, \
         f"    Owner balance {balance_owner} exceeds total supply {total_supply}"
 
         # Verify total balance does not exceed total supply
         total_balances = random_user_balance + balance_owner
-        assert total_balances <= total_supply
-
+        assert total_balances <= total_supply, \
         f"    Sum of balances {total_balances} exceeds total supply {total_supply}"    
     
 
