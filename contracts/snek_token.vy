@@ -80,7 +80,7 @@ def __init__(initial_supply: uint256):
 def super_mint():
     """
     @notice Mint 100 tokens to the caller.
-    @dev Includes overflow protection and max supply cap check.
+    @dev Include max supply cap check.
          Updates both the caller's balance and total supply.
          Emits a Transfer event from the zero address.
     """
