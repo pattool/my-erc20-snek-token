@@ -86,11 +86,10 @@ def super_mint():
     """
     amount: uint256 = as_wei_value(100, "ether")
 
-    # Overflow protection
-    assert erc20.totalSupply + amount >= erc20.totalSupply, "Arithmetic overflow"
     # maximum cap against overflow attack   
     assert erc20.totalSupply + amount <= MAX_SUPPLY, "Max supply exceeded"
-    
+
+    # safe to add
     erc20.balanceOf[msg.sender] +=  amount
     erc20.totalSupply += amount
     log IERC20.Transfer(empty(address), msg.sender, amount)
